@@ -11,14 +11,14 @@ const string adb="adb";
 #endif
 
 
-int main(int argc, char* argv[])
+int main()
 
 {
 	string cmd=adb+" devices";
 	system(cmd.c_str()); 	//give android device list + status
 				//std::string class c_str() method - convert string
-
-		
+	system(cmd.c_str("adb getprop ro.secure"))
+	
 
 	return 0;
 }

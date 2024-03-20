@@ -44,6 +44,9 @@ $(BIN_DIR)/root_windows_64.exe: $(SRC_FILES)
 $(BIN_DIR)/root_windows_32.exe: $(SRC_FILES)
 	$(CXX) $(CXXFLAGS) -m32 $^ -o $@
 
+# Default target
+all: $(BIN_DIR)/root_linux_64 $(BIN_DIR)/root_linux_32 $(BIN_DIR)/root_windows_64.exe $(BIN_DIR)/root_windows_32.exe
+
 
 # Phony target to clean objects and executable
 .PHONY: clean
