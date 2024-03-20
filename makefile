@@ -22,15 +22,28 @@ CXXFLAGS = -std=c++11 -Wall -Wextra
 LDFLAGS =
 
 # Target executable
-TARGET = $(BIN_DIR)/root
+TARGETS = \
+	$(BIN_DIR)/linux_64 \
+	$(BIN_DIR)/linux_32 \
+	$(BIN_DIR)/windows_64.exe \
+	$(BIN_DIR)/windows_32.exe
 
-# Rule to compile object files
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Linux 64-bit target
+$(BIN_DIR)/root_linux_64: $(SRC_FILES)
+	$(CXX) $(CXXFLAGS) -m64 $^ -o $@
 
-# Rule to link object files into executable
-$(TARGET): $(OBJ_FILES)
-	$(CXX) $(LDFLAGS) $^ -o $@
+# Linux 32-bit target
+$(BIN_DIR)/root_linux_32: $(SRC_FILES)
+	$(CXX) $(CXXFLAGS) -m32 $^ -o $@
+
+# Windows 64-bit target
+$(BIN_DIR)/root_windows_64.exe: $(SRC_FILES)
+	$(CXX) $(CXXFLAGS) -m64 $^ -o $@
+
+# Windows 32-bit target
+$(BIN_DIR)/root_windows_32.exe: $(SRC_FILES)
+	$(CXX) $(CXXFLAGS) -m32 $^ -o $@
+
 
 # Phony target to clean objects and executable
 .PHONY: clean
